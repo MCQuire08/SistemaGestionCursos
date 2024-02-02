@@ -1,6 +1,7 @@
 import express from 'express'
 import diaryRouter from './routes/diaries'
 import userRouter from './routes/user'
+import categoryRouter from './routes/category';
 
 const app = express()
 app.use(express.json())
@@ -19,3 +20,5 @@ app.listen(PORT, () =>{
 })
 
 app.use('/api/user', userRouter)
+
+app.use('/api/category', categoryRouter)

@@ -27,3 +27,33 @@ export interface User{
     startDate:string,
     status:string
 }
+
+export interface Category{
+    idCategory:number,
+    name:string
+}
+
+export interface Course{
+    idCourse:number,
+    name:string,
+    description:string,
+    duration:number
+}
+
+export interface Evidence{
+    idEvidence:number,
+    link:string
+}
+
+export interface Link{
+    idLink:number,
+    description:string
+}
+
+export interface Plan{
+    idPlan:number,
+    idUser:number,
+    idCourse:number,
+    progress:number
+}
+

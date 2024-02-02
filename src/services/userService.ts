@@ -1,5 +1,5 @@
 import { User } from "../types";
-import { Connection, RowDataPacket } from 'mysql2/promise';
+import { Connection, OkPacket, RowDataPacket } from 'mysql2/promise';
 import DatabaseService from "./databaseService";
 
 export const getUsers = async (dbService: DatabaseService): Promise<User[]> => {
@@ -29,6 +29,36 @@ export const getUsers = async (dbService: DatabaseService): Promise<User[]> => {
     return users;
   } catch (error) {
     console.error('Error al recuperar usuarios:', error);
+    throw error;
+  }
+};
+
+export const createUser = async (dbService: DatabaseService, newUser: User): Promise<number> => {
+  try {
+    // Obtener la conexión desde DatabaseService
+    const connection: Connection = await dbService.getConnection();
+    
+    // Consulta para insertar un nuevo usuario
+    const query = 'INSERT INTO TBL_USER (Name, LastName, Username, Password, Role, StartDate, Status) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    
+    // Los valores a insertar
+    const values = [
+      newUser.name,
+      newUser.lastname,
+      newUser.username,
+      newUser.password,
+      newUser.role,
+      newUser.startDate,
+      newUser.status
+    ];
+
+    // Ejecutar la consulta de inserción
+    const [result] = await connection.execute<OkPacket>(query, values);
+
+    // Devolver el ID del nuevo usuario creado
+    return result.insertId;
+  } catch (error) {
+    console.error('Error al crear usuario:', error);
     throw error;
   }
 };
