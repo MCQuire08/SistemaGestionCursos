@@ -1,0 +1,24 @@
+[
+    {
+      "id": 1,
+      "date": "2024-01-21",
+      "weather": "Sunny",
+      "visibility": "Clear",
+      "comment": "A beautiful day"
+    },
+    {
+      "id": 2,
+      "date": "2024-01-22",
+      "weather": "Cloudy",
+      "visibility": "Moderate",
+      "comment": "Some clouds, but not too bad"
+    },
+    {
+      "id": 3,
+      "date": "2024-01-23",
+      "weather": "Rainy",
+      "visibility": "Low",
+      "comment": "Bring an umbrella!"
+    }
+  ]
+  

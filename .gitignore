@@ -1,0 +1,27 @@
+# Módulos de Node.js
+node_modules/
+
+# Archivos de dependencias
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# Archivos generados durante el desarrollo
+*.log
+*.pid
+*.seed
+*.pid.lock
+*.log
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Carpeta de construcción
+build/
+
+# Archivos de configuración locales
+.env
+
+# Dependiendo del entorno de desarrollo, puedes agregar más exclusiones específicas, como archivos de configuración de IDE.
+# Ejemplo para Visual Studio Code
+.vscode/
