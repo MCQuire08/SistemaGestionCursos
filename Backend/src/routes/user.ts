@@ -59,7 +59,8 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Contraseña incorrecta' });
     }
 
-    const token = jwt.sign({ userId: user.idUser }, 'your-secret-key', { expiresIn: '1h' });
+
+    const token = jwt.sign({ userId: user.idUser }, 'fbf3efde675baf89d76b8f0a7bbbc18a27e259f30b7991586f9f96f897fee26a', { expiresIn: '1m' });
 
     return res.json({
       message: 'Inicio de sesión exitoso',
@@ -73,6 +74,9 @@ router.post('/login', async (req, res) => {
     return res.status(500).json({ error: 'Error al realizar el inicio de sesión' });
   }
 });
+
+
+
 
 
 export default router;
