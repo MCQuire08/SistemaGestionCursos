@@ -1,52 +1,76 @@
 import express from 'express';
 import * as userService from '../services/userService';
-import DatabaseService from '../services/databaseService'; // Asegúrate de importar el tipo correcto para DatabaseService
+import DatabaseService from '../services/databaseService';
 import { User } from '../types';
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
-const dbService = new DatabaseService(); // Crea una instancia de DatabaseService con los parámetros adecuados
+const dbService = new DatabaseService();
 
 router.get('/', async (_req, res) => {
   try {
-    // Llamar al método getUsers del módulo userService con el parámetro dbService
     const users = await userService.getUsers(dbService);
-
-    // Enviar la respuesta como JSON con la lista de usuarios
     res.json(users);
   } catch (error) {
-    // Manejar errores
     console.error('Error al recuperar usuarios:', error);
     res.status(500).json({ error: 'Error al recuperar usuarios' });
   }
 });
 
-// Ruta para crear un nuevo usuario
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
-    // Obtener los datos del cuerpo de la solicitud (request body)
     const { name, lastname, username, password, role, startDate, status } = req.body;
+    const hashedPassword = await bcrypt.hashSync(password, 12);
 
-    // Crear un objeto User con los datos proporcionados
     const newUser: User = {
-      idUser : 0,
+      idUser: 0,
       name,
       lastname,
       username,
-      password,
+      password: hashedPassword,
       role,
       startDate,
-      status
+      status,
     };
 
-    // Llamar al método createUser del módulo userService con los parámetros dbService y newUser
     const userId = await userService.createUser(dbService, newUser);
 
-    // Enviar la respuesta como JSON con el ID del nuevo usuario creado
     res.json({ userId });
   } catch (error) {
-    // Manejar errores
     console.error('Error al crear usuario:', error);
     res.status(500).json({ error: 'Error al crear usuario' });
+  }
+});
+
+router.post('/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    const user = await userService.getUserByUsername(dbService, username);
+
+    if (!user) {
+      return res.status(401).json({ error: 'Usuario no encontrado' });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ error: 'Contraseña incorrecta' });
+    }
+
+    const token = jwt.sign({ userId: user.idUser }, 'your-secret-key', { expiresIn: '1h' });
+
+    return res.json({
+      message: 'Inicio de sesión exitoso',
+      user: {
+        id: user.idUser
+      },
+      token: token,
+    });
+  } catch (error) {
+    console.error('Error al realizar el inicio de sesión:', error);
+    return res.status(500).json({ error: 'Error al realizar el inicio de sesión' });
   }
 });
 

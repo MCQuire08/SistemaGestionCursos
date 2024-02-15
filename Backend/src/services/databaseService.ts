@@ -6,10 +6,10 @@ class DatabaseService {
 
   public constructor() {
     const dbConfig = {
-      host: 'bpafipuylwkuv1oclvnw-mysql.services.clever-cloud.com',
-      user: 'ujq6w3t23dmgrrtf',
-      password: 'Iqj4FDxe4tNMbv03DvrZ',
-      database: 'bpafipuylwkuv1oclvnw',
+      host: '192.168.100.9',
+      user: 'rquiros',
+      password: 'AllMight203!',
+      database: 'dbsistemagestioncursos',
     };
 
     this.connectionPool = mysql.createPool(dbConfig);

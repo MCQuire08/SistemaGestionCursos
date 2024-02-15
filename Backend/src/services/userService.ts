@@ -62,3 +62,31 @@ export const createUser = async (dbService: DatabaseService, newUser: User): Pro
     throw error;
   }
 };
+
+export const getUserByUsername = async (dbService: DatabaseService, username: string): Promise<User | null> => {
+  try {
+    const connection: Connection = await dbService.getConnection();
+    const query = 'SELECT * FROM TBL_USER WHERE Username = ?';
+    const [rows] = await connection.execute<RowDataPacket[]>(query, [username]);
+
+    if (rows.length === 0) {
+      return null;
+    }
+    
+    const user: User = {
+      idUser: rows[0].IDUser,
+      name: rows[0].Name,
+      lastname: rows[0].LastName,
+      username: rows[0].Username,
+      password: rows[0].Password,
+      role: rows[0].Role,
+      startDate: rows[0].StartDate,
+      status: rows[0].Status
+    };
+
+    return user;
+  } catch (error) {
+    console.error('Error al obtener usuario por nombre de usuario:', error);
+    throw error;
+  }
+};
