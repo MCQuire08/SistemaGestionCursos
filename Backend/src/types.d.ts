@@ -25,7 +25,8 @@ export interface User{
     password:string,
     role:string,
     startDate:string,
-    status:string
+    status:string,
+    linkImage:string
 }
 
 export interface Category{
