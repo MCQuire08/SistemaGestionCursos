@@ -1,160 +1,25 @@
 <app-header></app-header>
 <section class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto bg-gray-100">
-      <h1 class="mb-6 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-black">Mis cursos:</h1>
-      <div class="flex flex-wrap -m-4">
-  
-        <!-- Curso 1 -->
-        <div class="lg:w-1/4 md:w-1/2 p-4 w-full group relative cursor-pointer" (click)="modalCourse.openModal()">
-          <a class="block relative h-48 rounded overflow-hidden">
-            <img alt="Curso 1" class="object-cover object-center w-full h-full block" src="https://img-c.udemycdn.com/course/480x270/2955348_3510.jpg">
-          </a>
-          <div class="overlay absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded"></div>
-          <div class="mt-4 z-10 relative">
-            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Diseño Web</h3>
-            <h2 class="text-gray-900 title-font text-lg font-medium">Curso Angular desde 0</h2>
-            <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
-              <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 0%">0%</div>
-            </div>
+  <div class="container px-5 py-24 mx-auto bg-gray-100">
+    <h1 class="mb-6 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-black">Mis cursos:</h1>
+    <div class="flex flex-wrap -m-4">
+      <div *ngFor="let course of courses" class="lg:w-1/4 md:w-1/2 p-4 w-full group relative cursor-pointer" (click)="modalCourse.openModal(course)">
+        <a class="block relative h-48 rounded overflow-hidden">
+          <img [alt]="course.CourseName" class="object-cover object-center w-full h-full block" [src]="course.LinkDescription">
+        </a>
+        <div class="overlay absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded"></div>
+        <div class="mt-4 z-10 relative">
+          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ course.CategoryName }}</h3>
+          <h2 class="text-gray-900 title-font text-lg font-medium">{{ course.CourseName }}</h2>
+          <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
+            <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" [style.width.%]="course.Progress">{{ course.Progress }}%</div>
           </div>
         </div>
-  
-        <!-- Curso 2 -->
-        <div class="lg:w-1/4 md:w-1/2 p-4 w-full group relative cursor-pointer" (click)="modalCourse.openModal()">
-          <a class="block relative h-48 rounded overflow-hidden">
-            <img alt="Curso 2" class="object-cover object-center w-full h-full block" src="https://codigofacilito.com/system/courses/thumbnails/000/000/646/original/Thumbnail_Curso_Curso_profesional_de_React.jpg?1691686262">
-          </a>
-          <div class="overlay absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded"></div>
-          <div class="mt-4 z-10 relative">
-            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Desarrollo Web</h3>
-            <h2 class="text-gray-900 title-font text-lg font-medium">Curso React.js</h2>
-            <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
-              <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 20%">20%</div>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Curso 3 -->
-        <div class="lg:w-1/4 md:w-1/2 p-4 w-full group relative cursor-pointer" (click)="modalCourse.openModal()">
-          <a class="block relative h-48 rounded overflow-hidden">
-            <img alt="Curso 3" class="object-cover object-center w-full h-full block" src="https://codigofacilito.com/system/courses/thumbnails/000/000/340/original/python-thumb.jpg?1635347671">
-          </a>
-          <div class="overlay absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded"></div>
-          <div class="mt-4 z-10 relative">
-            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Programación</h3>
-            <h2 class="text-gray-900 title-font text-lg font-medium">Curso Python</h2>
-            <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
-              <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 50%">50%</div>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Curso 4 -->
-        <div class="lg:w-1/4 md:w-1/2 p-4 w-full group relative cursor-pointer" (click)="modalCourse.openModal()">
-          <a class="block relative h-48 rounded overflow-hidden">
-            <img alt="Curso 4" class="object-cover object-center w-full h-full block" src="https://i.ytimg.com/vi/sekxanyTmGM/maxresdefault.jpg">
-          </a>
-          <div class="overlay absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded"></div>
-          <div class="mt-4 z-10 relative">
-            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Diseño Gráfico</h3>
-            <h2 class="text-gray-900 title-font text-lg font-medium">Curso Adobe Illustrator</h2>
-            <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
-              <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 75%">75%</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:w-1/4 md:w-1/2 p-4 w-full group relative cursor-pointer" (click)="modalCourse.openModal()">
-            <a class="block relative h-48 rounded overflow-hidden">
-              <img alt="Curso 4" class="object-cover object-center w-full h-full block" src="https://latam-academy.com/medias/2021/04/power-bi.jpg">
-            </a>
-            <div class="overlay absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded"></div>
-            <div class="mt-4 z-10 relative">
-              <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Inteligencia de negocios</h3>
-              <h2 class="text-gray-900 title-font text-lg font-medium">Curso Power BI</h2>
-              <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
-                <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 100%">100%</div>
-              </div>
-            </div>
-        </div>
-
-        <div class="lg:w-1/4 md:w-1/2 p-4 w-full group relative cursor-pointer" (click)="modalCourse.openModal()">
-            <a class="block relative h-48 rounded overflow-hidden">
-              <img alt="Curso 4" class="object-cover object-center w-full h-full block" src="https://edteam-media.s3.amazonaws.com/courses/original/7f3ac3ee-a5d5-4ce0-be38-4521dc70b011.png">
-            </a>
-            <div class="overlay absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded"></div>
-            <div class="mt-4 z-10 relative">
-              <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Base de datos</h3>
-              <h2 class="text-gray-900 title-font text-lg font-medium">Curso Mongo DB</h2>
-              <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
-                <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 45%">45%</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:w-1/4 md:w-1/2 p-4 w-full group relative cursor-pointer" (click)="modalCourse.openModal()">
-            <a class="block relative h-48 rounded overflow-hidden">
-              <img alt="Curso 4" class="object-cover object-center w-full h-full block" src="https://i.ytimg.com/vi/7vHzVN0EiQc/maxresdefault.jpg">
-            </a>
-            <div class="overlay absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded"></div>
-            <div class="mt-4 z-10 relative">
-              <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Programación</h3>
-              <h2 class="text-gray-900 title-font text-lg font-medium">Curso de Sprint Boot</h2>
-              <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
-                <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 85%">85%</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:w-1/4 md:w-1/2 p-4 w-full group relative cursor-pointer" (click)="modalCourse.openModal()">
-            <a class="block relative h-48 rounded overflow-hidden">
-              <img alt="Curso 4" class="object-cover object-center w-full h-full block" src="https://i.ytimg.com/vi/0lhG0lU8f0M/maxresdefault.jpg">
-            </a>
-            <div class="overlay absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded"></div>
-            <div class="mt-4 z-10 relative">
-              <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Contenedores</h3>
-              <h2 class="text-gray-900 title-font text-lg font-medium">Curso de Docker</h2>
-              <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
-                <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 15%">15%</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:w-1/4 md:w-1/2 p-4 w-full group relative cursor-pointer" (click)="modalCourse.openModal()">
-            <a class="block relative h-48 rounded overflow-hidden">
-              <img alt="Curso 4" class="object-cover object-center w-full h-full block" src="https://edteam-media.s3.amazonaws.com/courses/original/bcdbc60b-33bf-419d-9a13-8611b21df19e.png">
-            </a>
-            <div class="overlay absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded"></div>
-            <div class="mt-4 z-10 relative">
-              <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Programación Web</h3>
-              <h2 class="text-gray-900 title-font text-lg font-medium">Curso de APIs Rest</h2>
-              <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
-                <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 55%">55%</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:w-1/4 md:w-1/2 p-4 w-full group relative cursor-pointer" (click)="modalCourse.openModal()">
-            <a class="block relative h-48 rounded overflow-hidden">
-              <img alt="Curso 4" class="object-cover object-center w-full h-full block" src="https://edteam-media.s3.amazonaws.com/courses/original/e02f6289-883c-454c-8f35-f6a0cee78066.jpg">
-            </a>
-            <div class="overlay absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded"></div>
-            <div class="mt-4 z-10 relative">
-              <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Base de datos</h3>
-              <h2 class="text-gray-900 title-font text-lg font-medium">Curso de SQL</h2>
-              <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
-                <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 100%">100%</div>
-              </div>
-            </div>
-          </div>
-  
-        <!-- Puedes agregar más cursos según sea necesario -->
-  
       </div>
     </div>
-  </section>
-  
-  <app-modal-course #modalCourse></app-modal-course>
+  </div>
+</section>
 
-  <app-footer></app-footer>
-  
+<app-modal-course #modalCourse></app-modal-course>
+
+<app-footer></app-footer>

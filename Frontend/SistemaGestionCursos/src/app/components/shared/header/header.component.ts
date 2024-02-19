@@ -14,8 +14,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isMenuOpen: boolean = false;
   profileImageUrl: string = '';
+  isProfileMenuOpen = false;
 
   constructor(private router: Router, private userService: UserService, private loginService: LoginService) {}
 
@@ -23,12 +23,28 @@ export class HeaderComponent implements OnInit {
     this.loadProfileImage();
   }
 
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+  toggleProfileMenu() {
+    this.isProfileMenuOpen = !this.isProfileMenuOpen;
+  }
+
+  closeProfileMenu() {
+    this.isProfileMenuOpen = false;
   }
 
   user(): void {
     this.router.navigate(['/user']);
+  }
+
+  category(): void {
+    this.router.navigate(['/category']);
+  }
+
+  course(): void{
+    this.router.navigate(['/course']);
+  }
+
+  home(): void{
+    this.router.navigate(['/home']);
   }
 
   logout(): void {

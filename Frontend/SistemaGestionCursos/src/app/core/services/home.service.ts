@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-  private apiUrl = 'http://localhost:3000/api/user';
+export class HomeService {
+
+  private apiUrl = 'http://localhost:3000/api/plan/'; 
 
   constructor(private http: HttpClient) {}
 
-  getProfile(): Observable<any> {
+  getCourses(): Observable<any> {
     const idUser = localStorage.getItem('idUser');
     const token = localStorage.getItem('token');
 
@@ -22,10 +23,10 @@ export class UserService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<any>(`${this.apiUrl}/${idUser}`, { headers });
+    return this.http.get(`${this.apiUrl}getCoursesByUser/${idUser}`, { headers });
   }
 
-  getUsers(): Observable<any>{
+  updateProgress(courseId: number, newProgress: number): Observable<any> {
     const idUser = localStorage.getItem('idUser');
     const token = localStorage.getItem('token');
 
@@ -37,6 +38,10 @@ export class UserService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<any>(`${this.apiUrl}/`, { headers });
+    const body = {
+      newProgress: newProgress
+    };
+
+    return this.http.put(`${this.apiUrl}updateProgress/${courseId}`, body, {headers});
   }
 }

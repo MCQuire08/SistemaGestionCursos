@@ -15,7 +15,7 @@ export const getUsers = async (dbService: DatabaseService): Promise<User[]> => {
         idUser: row.IDUser,
         name: row.Name,
         lastname: row.LastName,
-        username: row.Username,
+        username: row.UserName,
         password: row.Password,
         role: row.Role,
         startDate: row.StartDate,
@@ -35,8 +35,6 @@ export const createUser = async (dbService: DatabaseService, newUser: User): Pro
     const connection: Connection = await dbService.getConnection();
     
     const query = 'INSERT INTO TBL_USER (Name, LastName, Username, Password, Role, Status, LinkImage) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    
-    console.log(newUser);
 
     const values = [
       newUser.name,
@@ -78,7 +76,7 @@ export const getUserByUsername = async (dbService: DatabaseService, username: st
       status: rows[0].Status,
       linkImage:rows[0].LinkImage
     };
-
+    
     return user;
   } catch (error) {
     console.error('Error al obtener usuario por nombre de usuario:', error);
