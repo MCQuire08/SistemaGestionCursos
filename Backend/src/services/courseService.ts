@@ -14,7 +14,7 @@ export const getCourses = async (dbService: DatabaseService): Promise<Course[]> 
             return {
                 idCourse: row.IDCourse,
                 name:row.Name,
-                description:row.Course,
+                description:row.Description,
                 duration:row.Duration
             };
         });

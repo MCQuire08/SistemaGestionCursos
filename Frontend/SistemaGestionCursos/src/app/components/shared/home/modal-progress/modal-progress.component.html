@@ -7,13 +7,13 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
-        <h3 class="text-lg font-semibold">Curso de Angular</h3>
+        <h3 class="text-lg font-semibold">{{ course.CourseName }}</h3>
         <br>
         <h1 class="text-gray-500 tracking-widest title-font mb-1">Avance:</h1>
 
         <div class="flex items-center space-x-4">
             <i (click)="subtract()" class="fa-solid fa-minus fa-2xl cursor-pointer"></i>
-            <h1 class="text-gray-500 tracking-widest title-font text-center mb-2">{{ value }}%</h1>
+            <h1 class="text-gray-500 tracking-widest title-font text-center mb-2">{{ progressValue$ | async }}%</h1>
             <i (click)="add()" class="fa-solid fa-plus fa-2xl cursor-pointer"></i>
         </div>
         
@@ -21,9 +21,6 @@
         <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 mt-4 mb-4" id="multiple_files" type="file" multiple>
         <div class="max-h-40 overflow-auto">
             <span class="inline-block bg-blue-500 text-white rounded-full px-2 py-1 text-xs font-bold uppercase mr-2 mb-1">Certificado1.png</span>
-            <span class="inline-block bg-blue-500 text-white rounded-full px-2 py-1 text-xs font-bold uppercase mr-2 mb-1">Certificado2.pdf</span>
-            <span class="inline-block bg-blue-500 text-white rounded-full px-2 py-1 text-xs font-bold uppercase mr-2 mb-1">Laboratorio.jpg</span>
-            <span class="inline-block bg-blue-500 text-white rounded-full px-2 py-1 text-xs font-bold uppercase mr-2 mb-1">Examen.txt</span>
         </div>
     </div>
 </div>
